@@ -1,4 +1,6 @@
 <?php
+// index.php - main file for proxy8080
+// last modified by farglabs on 2019-09-23
 if( $_SERVER[REQUEST_URI] == '/proxy8080/' ) {
 	echo `curl http://127.0.0.1:8080`;
 } else if( $_SERVER[REQUEST_URI] == '/proxy8080/index.php' ) {
