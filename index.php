@@ -26,7 +26,18 @@ if( gettype($proxiedPort) == "string" && gettype($proxyPath) == "string" ) {
 }
 
 function proxyRequest($port, $webPath) {
-	if( $_SERVER[REQUEST_URI] == '/' . $webPath . '/' ) {
+	$path = $_SERVER[REQUEST_URI];
+	if( substr($path, -2) == "js" ) {
+                header('Content-type: text/javascript');
+        }
+        if( substr($path, -3) == "css" ) {
+                header('Content-type: text/css');
+        }
+        if( $webPath == "" && $path != "/" ) {
+                echo `curl http://127.0.0.1:$port$path`;
+        } else if( $webPath == "" && $path == "/" ) {
+                echo `curl http://127.0.0.1:$port`;
+	} else if( $_SERVER[REQUEST_URI] == '/' . $webPath . '/' ) {
 		echo `curl http://127.0.0.1:$port`;
 	} else if( $_SERVER[REQUEST_URI] == '/' . $webPath . '/index.php' ) {
 		echo `curl http://127.0.0.1:$port`;
