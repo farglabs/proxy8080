@@ -1,6 +1,8 @@
 # proxy8080
 Lightweight PHP proxy for Apache to serve content in a web directory hosted on a fire-walled port
 
+This tool could come in handy for devops engineers troubleshooting a network/security issue in a production environment, but is not recommended for use in production environments. Also, use caution when exposing internal and/or HTTPS resources to the world.
+
 ## Requirements for use
 - Web server with curl, Apache and PHP already installed and configured
 - Access to /proxy8080/ web directory for your server (This is where we run from by default)
