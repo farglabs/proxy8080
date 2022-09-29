@@ -17,4 +17,4 @@ Lightweight PHP proxy for Apache to serve content in a web directory hosted on a
 
 Q: I'm getting Server 500 errors, I'm not seeing what I think I should be seeing, my styling appears to be broken, javascript isn't working and this doesn't seem to do what I needed it to do; help?!
 
-A: Make sure and set your proxyPath in both the .htaccess file and the config.ini files!
+A: Make sure that Apache is configured to allow overrides and set your proxyPath in both the .htaccess file and the config.ini files!
