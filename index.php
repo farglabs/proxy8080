@@ -1,11 +1,12 @@
 <?php
 // index.php - main file for proxy8080
-// last modified by farglabs on 2019-09-23
+// last modified by farglabs on 2022-10-06
 
 $iniPath = './config.ini'; // Default location of config.ini is in same directory as index.php
 $iniArray = '';
 $proxiedPort = "8080"; // These defaults should be overwritten by your config.ini file!
 $proxyPath = "proxy8080"; // These defaults should be overwritten by your config.ini file!
+$proxyAddress = "127.0.0.1"; // This IP/domain cannot be overwritten by your config.ini file - be careful if changing this!
 
 try {
 	$iniArray = parse_ini_file( $iniPath );
@@ -34,21 +35,21 @@ function proxyRequest($port, $webPath) {
                 header('Content-type: text/css');
         }
         if( $webPath == "" && $path != "/" ) {
-                echo `curl http://127.0.0.1:$port$path`;
+                echo `curl http://$proxyAddress:$port$path`;
         } else if( $webPath == "" && $path == "/" ) {
-                echo `curl http://127.0.0.1:$port`;
+                echo `curl http://$proxyAddress:$port`;
 	} else if( $_SERVER[REQUEST_URI] == '/' . $webPath . '/' ) {
-		echo `curl http://127.0.0.1:$port`;
+		echo `curl http://$proxyAddress:$port`;
 	} else if( $_SERVER[REQUEST_URI] == '/' . $webPath . '/index.php' ) {
-		echo `curl http://127.0.0.1:$port`;
+		echo `curl http://$proxyAddress:$port`;
 	} else if( substr( $_SERVER[REQUEST_URI], 0, strlen('/' . $webPath . '/index.php') ) == '/' . $webPath . '/index.php' ) {
 		$path = $_SERVER[REQUEST_URI];
 		$path = substr( $path, strlen('/' . $webPath . '/index.php') );
-		echo `curl http://127.0.0.1:$port$path`;
+		echo `curl http://$proxyAddress:$port$path`;
 	} else if( substr( $_SERVER[REQUEST_URI], 0, strlen('/' . $webPath ) ) == '/' . $webPath ) {
 		$path = $_SERVER[REQUEST_URI];
 		$path = substr( $path, strlen('/' . $webPath) );
-		echo `curl http://127.0.0.1:$port$path`;
+		echo `curl http://$proxyAddress:$port$path`;
 	} else {
 		echo 'Invalid request or something...';
 	}
