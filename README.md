@@ -20,3 +20,8 @@ This tool could come in handy for devops engineers troubleshooting a network/sec
 Q: I'm getting Server 500 errors, I'm not seeing what I think I should be seeing, my styling appears to be broken, javascript isn't working and this doesn't seem to do what I needed it to do; help?!
 
 A: Make sure that Apache is configured to allow overrides and set your proxyPath in both the .htaccess file and the config.ini files!
+
+
+Q: My application runs on a port other than 8080, will proxy8080 still work for me?
+
+A: Of course! You can set the value of the proxiedPort variable in your config.ini to any port number between 1 and 65535 (e.g. for a Node app running a dev port of 3000, just set proxiedPort to 3000.)
